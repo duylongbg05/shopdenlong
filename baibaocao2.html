@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Cửa hàng bán đèn lồng Trung Thu đẹp và chất lượng"
+    />
+    <title>Cửa Hàng Đèn Lồng Trung Thu</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #ca2609;
+      }
+
+      header {
+        background-color: #f58d06;
+        color: white;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header h1 {
+        margin: 0;
+      }
+
+      /* Thanh tìm kiếm và lọc */
+      .search-bar input,
+      .filter-bar select {
+        padding: 5px 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: none;
+        margin: 5px;
+      }
+
+      nav {
+        background-color: #333;
+        overflow: hidden;
+      }
+
+      nav a {
+        float: left;
+        display: block;
+        color: white;
+        padding: 15px 70px;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      nav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      /* Chỉnh bố cục container */
+      .container {
+        width: 80%;
+        margin: 20px auto;
+      }
+
+      /* Sản phẩm */
+      .products {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .product {
+        width: 30%;
+        margin-bottom: 20px;
+        background-color: white;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .product:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .product img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+
+      .product h3 {
+        text-align: center;
+        color: #333;
+      }
+
+      .product p {
+        color: #555;
+        text-align: center;
+      }
+
+      .product button {
+        background-color: #ff9900;
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .product button:hover {
+        background-color: #e68a00;
+      }
+
+      /* Giỏ hàng */
+      .cart-icon {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: #ff9900;
+        border-radius: 50%;
+        padding: 15px;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .cart-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        width: 300px;
+        z-index: 1000;
+      }
+
+      .cart-popup h3 {
+        margin-top: 0;
+      }
+
+      .cart-popup ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .cart-popup ul li {
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .cart-popup button {
+        background-color: #ff9900;
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .cart-popup button:hover {
+        background-color: #e68a00;
+      }
+
+      /* Phân trang */
+      .pagination {
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      .pagination button {
+        background-color: #ff9900;
+        border: none;
+        padding: 10px 20px;
+        margin: 5px;
+        cursor: pointer;
+        color: white;
+        border-radius: 5px;
+      }
+
+      .pagination button:hover {
+        background-color: #e68a00;
+      }
+
+      /* Liên hệ */
+      #contact {
+        margin-left: 50%;
+        transform: translateX(-50%);
+        width: 50%;
+      }
+      .contact-form {
+        background-color: white;
+        padding: 30px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        margin-top: 30px;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 11px;
+        margin: px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      .contact-form button {
+        background-color: #0f0a01;
+        color: white;
+        padding: 10px 30px;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+      }
+
+      .contact-form button:hover {
+        background-color: #e68a00;
+      }
+
+      footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 20px;
+      }
+      #product-list img {
+        height: 500px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Cửa Hàng Đèn Lồng Duy Long</h1>
+      <div>
+        <input
+          type="text"
+          id="search"
+          class="search-bar"
+          placeholder="Tìm kiếm sản phẩm..."
+        />
+        <select id="filter" class="filter-bar">
+          <option value="all">Tất cả</option>
+          <option value="low">Giá thấp</option>
+          <option value="high">Giá cao</option>
+        </select>
+      </div>
+    </header>
+
+    <nav>
+      <a href="#home">Trang Chủ</a>
+      <a href="#products">Sản Phẩm</a>
+      <a href="#contact">Liên Hệ</a>
+    </nav>
+
+    <div class="container">
+      <section id="home">
+        <h2 style="text-align: center">
+          Chào mừng đến với cửa hàng Đèn Lồng Trung Thu
+        </h2>
+        <p style="text-align: center">
+          Chúng tôi cung cấp các loại đèn lồng đẹp, chất lượng, mang đậm nét văn
+          hóa truyền thống Trung Thu Việt Nam.
+        </p>
+      </section>
+
+      <section id="products">
+        <h2 style="text-align: center">Các Mẫu Đèn Lồng Trung Thu</h2>
+        <div class="products" id="product-list">
+          <!-- Sản phẩm sẽ được chèn vào đây bằng JavaScript -->
+        </div>
+      </section>
+
+      <div class="pagination">
+        <button onclick="prevPage()">Trang trước</button>
+        <button onclick="nextPage()">Trang sau</button>
+      </div>
+
+      <section id="contact">
+        <h2 style="text-align: center">Liên Hệ Với Chúng Tôi</h2>
+        <form class="contact-form">
+          <input type="text" placeholder="Tên của bạn" required />
+          <input type="email" placeholder="Email" required />
+          <textarea placeholder="Lời nhắn" rows="4" required></textarea>
+          <button type="submit">Gửi</button>
+        </form>
+      </section>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Cửa Hàng Đèn Lồng Trung Thu.</p>
+      <p>&copy;Hotlite: 012.345.789 Gmail: longnotduy@gmail.com</p>
+    </footer>
+
+    <!-- Giỏ hàng -->
+    <div class="cart-icon" onclick="toggleCartPopup()">🛒</div>
+    <div class="cart-popup" id="cartPopup">
+      <h3>Giỏ hàng của bạn</h3>
+      <ul id="cartItems">
+        <!-- Sản phẩm trong giỏ hàng sẽ được hiển thị ở đây -->
+      </ul>
+      <button onclick="checkout()">Thanh toán</button>
+    </div>
+
+    <script>
+      const products = [
+        {
+          id: 1,
+          name: "Đèn Lồng Hình Con Cá",
+          price: 150000,
+          description: "Đèn lồng hình con cá, mang đến sự may mắn.",
+          image:
+            "https://bizweb.dktcdn.net/thumb/1024x1024/100/431/426/products/z5597577361278-c676d721e7b1fa502be99c0595f3bd2f.jpg?v=1720001286120",
+        },
+        {
+          id: 2,
+          name: "Đèn Lồng Hình Chú Lần",
+          price: 200000,
+          description: "Đèn lồng hình chú lân, biểu trưng cho sự bình an.",
+          image:
+            "https://laz-img-sg.alicdn.com/p/ae766ce8bbea38ddefb29276e6ce6566.jpg",
+        },
+        {
+          id: 3,
+          name: "Đèn Lồng Hình Hoa Sen",
+          price: 180000,
+          description: "Đèn lồng hình hoa sen, tượng trưng cho sự thanh cao.",
+          image:
+            "https://down-vn.img.susercontent.com/file/sg-11134201-22120-ys21zyom2jlvc3",
+        },
+        {
+          id: 4,
+          name: "Đèn Lồng Ông Sao",
+          price: 150000,
+          description:
+            "Đèn lồng ông sao,tượng trưng cho ánh sáng, hy vọng, và sự đoàn kết.",
+          image:
+            "https://imgs.vietnamnet.vn/Images/2017/09/22/13/20170922134514-lam-den-ong-sao.jpg",
+        },
+        {
+          id: 5,
+          name: "Đèn Lồng Kéo Quân ",
+          price: 120000,
+          description:
+            "Đèn lồng kéo quân, tượng trưng cho sự sáng tạo lưu giữ truyền thống.",
+          image:
+            "https://cdn.tgdd.vn/Files/2019/07/30/1182575/tu-tay-lam-long-den-keo-quan-bang-giay-cho-trung-thu-202208101431170560.jpeg",
+        },
+        {
+          id: 6,
+          name: "Đèn Lồng Giấy Xếp",
+          price: 130000,
+          description:
+            "Đèn lồng giấy xếp, biểu trưng cho sự giản dị, sáng tạo và ấm áp. ",
+          image:
+            "https://denlongthanhtra.com/wp-content/uploads/2021/05/slider_1529149615838_o_1cg46mqsf4h37alt3m1t4rll6c-1024x683-1.jpg",
+        },
+        {
+          id: 7,
+          name: "Đèn Lồng Giấy Kiếng ",
+          price: 170000,
+          description:
+            "Đèn lồng giấy kiếng, tượng trưng cho sự rực rỡ, hồn nhiên và gắn bó.",
+          image:
+            "https://bizweb.dktcdn.net/thumb/1024x1024/100/435/471/products/0-574b00e8-3dd2-4dc8-aaf0-0d47c958a778.jpg?v=1690540156290",
+        },
+        {
+          id: 8,
+          name: "Đèn Lồng Con Thỏ",
+          price: 140000,
+          description:
+            "Đèn lồng con thỏ, tượng trưng cho sự hồn nhiên, may mắn và niềm vui của trẻ thơ.",
+          image:
+            "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-llrfvj5rmbbze9",
+        },
+        {
+          id: 9,
+          name: "Đèn Lồng Điện Tử",
+          price: 180000,
+          description:
+            "Đèn lồng điện tử, mang ý nghĩa hiện đại hóa Tết Trung Thu, kết hợp truyền thống với công nghệ.",
+          image:
+            "https://media-cdn-v2.laodong.vn/storage/newsportal/2023/8/26/1233893/Z4638714470882_Fc0f1.jpg",
+        },
+        {
+          id: 12,
+          name: "Đèn Lồng thủy tinh",
+          price: 200000,
+          description:
+            "Đèn lồng thủy tinh tượng trưng cho sự sang trọng, tinh tế, ánh sáng trí tuệ, trường tồn và mang ý nghĩa phong thủy về may mắn, thịnh vượng.",
+          image:
+            "https://media.cooky.vn/article/s640/cooky-article-cover-b276.jpg",
+        },
+        {
+          id: 10,
+          name: "Đèn Lồng Bằng Gỗ",
+          price: 290000,
+          description:
+            "Đèn lồng bằng gỗ, tượng trưng cho sự mộc mạc, bền vững và tinh tế.",
+          image:
+            "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lx5fd09ojizd55",
+        },
+        {
+          id: 11,
+          name: "Đèn Lồng Hoa Đăng",
+          price: 150000,
+          description:
+            "Đèn lồng hoa đăng tượng trưng cho ước nguyện, hy vọng, lòng thành kính với tổ tiên.",
+          image:
+            "https://ktmt.vnmediacdn.com/images/2022/08/11/30-1660231002-tha-hoa-dang.jpg",
+        },
+
+        // Thêm sản phẩm khác
+      ];
+
+      const cart = [];
+
+      // Hàm hiển thị sản phẩm
+      function renderProducts(filteredProducts) {
+        const productList = document.getElementById("product-list");
+        productList.innerHTML = ""; // Xóa hết sản phẩm hiện tại
+        filteredProducts.forEach((product) => {
+          const productDiv = document.createElement("div");
+          productDiv.classList.add("product");
+          productDiv.innerHTML = `
+                          <img src="${product.image}" alt="${product.name}">
+                          <h3>${product.name}</h3>
+                          <p>${product.description}</p>
+                          <p><strong>Giá: ${product.price.toLocaleString()}đ</strong></p>
+                          <button onclick="addToCart(${
+                            product.id
+                          })">Thêm vào giỏ</button>
+                      `;
+          productList.appendChild(productDiv);
+        });
+      }
+      // Hàm thêm sản phẩm vào giỏ
+      function addToCart(productId) {
+        const product = products.find((p) => p.id === productId);
+        cart.push(product);
+        updateCart();
+      }
+      // Hàm cập nhật giỏ hàng
+      function updateCart() {
+        const cartItemsList = document.getElementById("cartItems");
+        cartItemsList.innerHTML = "";
+        cart.forEach((item, index) => {
+          const cartItem = document.createElement("li");
+          cartItem.innerHTML = `${item.name} - ${item.price.toLocaleString()}đ
+                                            <button onclick="removeFromCart(${index})">Xóa</button>`;
+          cartItemsList.appendChild(cartItem);
+        });
+      }
+      // Hàm xóa sản phẩm khỏi giỏ
+      function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCart();
+      }
+      // Hàm thanh toán
+      function checkout() {
+        alert("Thanh toán thành công!");
+        cart.length = 0; // Xóa giỏ hàng sau khi thanh toán
+        updateCart();
+      }
+      // Hàm toggle giỏ hàng popup
+      function toggleCartPopup() {
+        const popup = document.getElementById("cartPopup");
+        popup.style.display =
+          popup.style.display === "block" ? "none" : "block";
+      }
+      // Hàm lọc sản phẩm theo giá
+      function filterProducts() {
+        const filterValue = document.getElementById("filter").value;
+        let filteredProducts = [...products];
+
+        if (filterValue === "low") {
+          filteredProducts.sort((a, b) => a.price - b.price);
+        } else if (filterValue === "high") {
+          filteredProducts.sort((a, b) => b.price - a.price);
+        }
+        renderProducts(filteredProducts);
+      }
+      // Hàm tìm kiếm sản phẩm
+      function searchProducts() {
+        const searchQuery = document
+          .getElementById("search")
+          .value.toLowerCase();
+        const filteredProducts = products.filter((product) =>
+          product.name.toLowerCase().includes(searchQuery)
+        );
+        renderProducts(filteredProducts);
+      }
+
+      // Lắng nghe sự kiện lọc và tìm kiếm
+      document
+        .getElementById("filter")
+        .addEventListener("change", filterProducts);
+      document
+        .getElementById("search")
+        .addEventListener("input", searchProducts);
+
+      // Hiển thị tất cả sản phẩm khi tải trang
+      renderProducts(products);
+    </script>
+  </body>
+</html>
